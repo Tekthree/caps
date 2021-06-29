@@ -1,7 +1,7 @@
 'use strict'
 
 // -------------- requires and imports --------------------//
-const { fake } = require('faker');
+const faker = require('faker');
 
 
 
@@ -14,18 +14,26 @@ class Vendor{
 
   create(){
     let order = {
-      storeName: fake.name.findName(),
-      orderId: fake.datatype.uuid(),
-      customerName: fake.name.findName(),
-      address: fake.address.streetAddress()
+      storeName: faker.name.findName(),
+      orderId: faker.datatype.uuid(),
+      customerName: faker.name.findName(),
+      address: faker.address.streetAddress()
     }
     this.array.push(order);
+    console.log(order);
     return order;
   }
 }
 
+function delivered(order){
+  console.log(`Vendor: thank you for delivering ${order.payload.orderId}`);
+  console.log(`Date-Time: ${new Date()}`);
+  console.log(order);
+}
+
 
 module.exports = {
-  Vendor: Vendor
+  Vendor: Vendor,
+  delivered: delivered
 
 }

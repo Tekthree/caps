@@ -7,25 +7,26 @@ const events = require('../events.js');
 
 
 // ------------------- picked up --------------------------//
-function pickedUp(payload){
+function pickedUp(order){
+  console.log("this is order",order);
   setTimeout(()=>{
-    console.log(`Driver: picked up${payload.order.orderId}`);
+    console.log(`Driver: picked up ${order.payload.orderId}`);
     console.log(`Event: in transit`);
-    console.log(`Time: ${new Date().getTime()}`);
-    console.log(payload);
-    events.emit('inTransit', payload)
+    console.log(`Date-Time: ${new Date()}`);
+    console.log(order);
+    events.emit('inTransit', order)
   }, 1000)
 }
 
 
 // ------------------- inTransit --------------------------//
-function inTransit(payload){
+function inTransit(order){
   setTimeout(()=>{
-    console.log(`Driver: in transit ${payload.order.orderId}`);
+    console.log(`Driver: in transit ${order.payload.orderId}`);
     console.log(`Event: in transit`);
-    console.log(`Time: in transit ${new Date().getTime()}`);
-    console.log(payload);
-    events.emit('delivered', payload);
+    console.log(`Date-Time: in transit ${new Date()}`);
+    console.log(order);
+    events.emit('delivered', order);
 
     
   }, 3000);
@@ -34,8 +35,6 @@ function inTransit(payload){
 
 
 
-module.exports = {
-  inTransit: inTransit,
-  pickedUp: pickedUp
-};
+
+module.exports = { pickedUp, inTransit};
 
