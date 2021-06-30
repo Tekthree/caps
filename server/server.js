@@ -2,9 +2,11 @@
 
 // ------------------ require -----------------------//
 const io = require("socket.io");
+require('dotenv').config();
 
 // ------------------ socket.io hub and namespace -----------------------//
-const server = io(3000);
+const PORT = process.env.PORT || 3000
+const server = io(PORT);
 const capsController = server.of("/caps");
 
 // ------------------ create connnections with client -----------------------//
