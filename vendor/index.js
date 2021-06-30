@@ -27,9 +27,22 @@ class Vendor{
   }
 }
 
+//------------------- order object -----------------------//
+const NewOrder = new Vendor();
+
+
+// ----------- customer order every 5 mins --------------//
+setInterval(()=>{
+  server.emit('pickUp', {payload: NewOrder.create()});
+
+}, 5000)
+
+
+//------------------- delivered -----------------------//
 server.on('delivered', (order)=>{
   console.log(`Vendor: thank you for delivering ${order.payload.orderId}`);
   console.log(`Date-Time: ${new Date()}`);
   console.log(order);
 });
+
 

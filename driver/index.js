@@ -13,8 +13,8 @@ server.on("pickUp", (order) => {
         console.log(`Event: in transit`);
         console.log(`Date-Time: ${new Date()}`);
         console.log(order);
-        events.emit("inTransit", order);
-    }, 1000);
+        server.emit("inTransit", order);
+    }, 1500);
 
     // -------------- inTransit ----------------//
     setTimeout(() => {
@@ -22,6 +22,6 @@ server.on("pickUp", (order) => {
         console.log(`Event: in transit`);
         console.log(`Date-Time: in transit ${new Date()}`);
         console.log(order);
-        events.emit("delivered", order);
+        server.emit("delivered", order);
     }, 3000);
 });
